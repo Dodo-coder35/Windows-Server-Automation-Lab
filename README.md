@@ -1,41 +1,47 @@
+
 # Windows Server Automation Lab
 
 ## Description
 
-Ce projet consiste à mettre en place un environnement d'administration système basé sur Windows Server et à développer des scripts PowerShell pour automatiser les tâches d'administration.
+This project consists of building a Windows Server administration laboratory environment and developing PowerShell scripts to automate system administration tasks.
 
-## Objectifs
+The lab simulates a small enterprise infrastructure with one Windows Server acting as a Domain Controller and two Windows 11 clients connected to the domain.
 
-- Installer et configurer un environnement Windows Server
-- Mettre en place Active Directory
-- Gérer les utilisateurs et les groupes
-- Automatiser les tâches d'administration avec PowerShell
-- Documenter les procédures réalisées
+## Objectives
 
-## Environnement
+The objectives of this project are:
 
-- Windows Server
-- Windows 11 Client
-- Active Directory Domain Services
+- Deploy and configure a Windows Server environment
+- Implement Active Directory Domain Services (AD DS)
+- Configure and manage users and groups
+- Automate administration tasks using PowerShell
+- Document system administration procedures
+
+## Environment
+
+- Windows Server 2022
+- Two Windows 11 Clients
+- Active Directory Domain Services (AD DS)
 - PowerShell
-- VirtualBox
+- Oracle VirtualBox
 
-## Structure du projet
-Windows-Server-Automation-Lab/
-│
-├── README.md
-├── docs/          Documentation du laboratoire
-├── scripts/       Scripts PowerShell d'automatisation
-├── screenshots/   Captures des différentes étapes 
-└── csv/           Fichiers utilisés par les scripts
-## Compétences développées
+## Lab Architecture
 
-- Administration Windows Server
-- Gestion Active Directory
-- Automatisation PowerShell
-- Gestion des utilisateurs et groupes
-- Documentation technique
-
-## Auteur
-
-Dorcas Ouedraogo
+```text
+                 +-----------------------+
+                 |  Windows Server 2022  |
+                 |       SRV-DC01        |
+                 | Domain Controller     |
+                 | AD DS + DNS           |
+                 +-----------+-----------+
+                             |
+                     Internal Network
+                             |
+              +--------------+--------------+
+              |                             |
+              |                             |
+     +----------------+          +----------------+
+     |   Windows 11   |          |   Windows 11   |
+     |    CLIENT01    |          |    CLIENT02    |
+     | Domain Client  |          | Domain Client  |
+     +----------------+          +----------------+

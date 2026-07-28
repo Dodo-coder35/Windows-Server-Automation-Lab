@@ -209,11 +209,12 @@ Future automation scripts will include:
 Windows-Server-Automation-Lab
 │
 ├── docs
-│   ├── Network-Configuration.md
-│   ├── Active-Directory-Installation.md
-│   ├── Domain-Controller.md
-│   ├── DHCP.md
-│   └── Organizational-Units.md
+│   ├── 01-lab-setup.md
+    ├── O2-Network-Configuration.md
+│   ├── O3-Active-Directory-Installation.md
+│   ├── 04-Domain-Controller.md
+│   ├── 05-DHCP.md
+│   └── 06-Organizational-Units.md
 │
 ├── screenshots
 │   ├── 01_Server

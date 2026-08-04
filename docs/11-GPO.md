@@ -55,4 +55,6 @@ Loopback processing allows user settings to be applied based on the computer the
 - On a client machine, run:  
 ```cmd
 gpupdate /force
-gpresult /h report.html
+and try to access the control panel
+
+I have also block access ton control panel 

@@ -1,124 +1,58 @@
-# Group Policy Object (GPO) Configuration
+# Group Policy Object (GPO)
 
-## Objective
+## 📌 Definition
+A **Group Policy Object (GPO)** is a set of rules and configurations in Active Directory used to manage and control the behavior of users and computers within a domain.
 
-The objective of this step is to configure a Group Policy Object (GPO) in the Active Directory environment in order to apply centralized security and configuration settings to domain computers.
+## 🎯Purpose
+- Centralized management**: Apply settings to multiple users or computers from one place.  
+- Security enforcement**: Restrict access to features (e.g., disable Control Panel, enforce password policies).  
+- Consistency**: Ensure all domain members follow the same standards.  
+- Automation**: Reduce manual configuration across devices.
 
-In this lab, a GPO was created and linked to the **Workstations** Organizational Unit (OU) to manage workstation policies.
+## ⚙️ How GPOs Work
+- GPOs are created and managed through the **Group Policy Management Console (GPMC)**.  
+- They contain two main categories of settings:
+  - **Computer Configuration** → applies to machines regardless of who logs in.  
+  - **User Configuration** → applies to user accounts regardless of the machine.  
+- GPOs are linked to **Organizational Units (OUs)**, domains, or sites.  
+- Application order follows the hierarchy: **Local → Site → Domain → OU**.
 
----
+## 🔄 Loopback Processing
+Loopback processing allows user settings to be applied based on the computer they log into:
+- **Merge** → combines normal user GPOs with computer-linked GPOs (computer GPOs override conflicts).  
+- **Replace** → ignores normal user GPOs and applies only computer-linked GPOs.
 
-## Why Use Group Policy Objects?
-
-Group Policy Objects (GPOs) are a feature of Active Directory that allows administrators to centrally manage users and computers within a domain.
-
-Instead of manually configuring each computer individually, administrators can define policies once on the Domain Controller and automatically apply them to targeted computers or users.
-
-GPOs are commonly used in enterprise environments for:
-
-* Enforcing security policies.
-* Restricting user access to certain Windows features.
-* Configuring operating system settings.
-* Deploying software and scripts.
-* Managing user and computer configurations.
-
-Using GPOs improves:
-
-* Centralized administration.
-* Security management.
-* Configuration consistency.
-* Scalability in large environments.
-
----
-
-## GPO Implementation
-
-### Environment
-
-| Component         | Value                                |
-| ----------------- | ------------------------------------ |
-| Domain            | lab.local                            |
-| Domain Controller | SRV-DC01                             |
-| Target OU         | Workstations                         |
-| GPO Name          | Workstations - Disable Control Panel |
+## ✅ Example Use Cases
+- Disable **Control Panel** for all users in a department.  
+- Enforce a specific homepage in browsers.  
+- Deploy software automatically to domain computers.  
+- Apply password and security policies consistently.
 
 ---
 
-## Creating the GPO
+## ⚙️ Procedure I Followed
 
-The Group Policy Management Console was opened from:
+### 1. Create the GPO
+- Open **Group Policy Management Console (GPMC)**.  
+- Right-click the domain or OU → **Create a GPO in this domain, and Link it here**.  
+- Name the GPO (e.g., *Block Control Panel*).  
 
-```
-Server Manager
-→ Tools
-→ Group Policy Management
-```
+### 2. Configure the GPO
+- Edit the GPO.  
+- Navigate to:  User Configuration → Policies → Administrative Templates → Control Panel
 
-A new GPO was created and linked to the **Workstations** Organizational Unit.
+- Enable the policy **Prohibit access to Control Panel and PC settings**.  
 
-The GPO was named:
+### 3. Link the GPO
+- Initially, the GPO was linked to the **Workstations OU** (computers).  
+- Result: the GPO was detected but refused, because it contained **User Configuration** settings.  
 
-```
-Workstations - Disable Control Panel
-```
+### 4. Correct the Scope
+- The GPO was re-linked to the **Departments OU**, where the **user accounts** are located.  
+- Result: the GPO applied successfully, and the Control Panel was blocked for users.  
 
-Linking the GPO to the Workstations OU ensures that all computers placed inside this OU automatically receive this policy.
-
----
-
-## Configured Policy
-
-The following policy was enabled:
-
-```
-User Configuration
-    → Policies
-        → Administrative Templates
-            → Control Panel
-                → Prohibit access to Control Panel and PC settings
-```
-
-The policy state was configured as:
-
-```
-Enabled
-```
-
----
-
-## Applying the GPO
-
-After creating the policy, the client computer was forced to refresh its Group Policy settings using:
-
+### 5. Verification
+- On a client machine, run:  
 ```cmd
 gpupdate /force
-```
-
-This command immediately requests the latest policies from the Domain Controller.
-
----
-
-## Validation
-
-The GPO application was verified on the Windows client.
-
-Expected behavior:
-
-* The user cannot open the Control Panel.
-* Windows Settings access is restricted.
-* The restriction is automatically applied by Active Directory.
-
----
-
-## Result
-
-The Group Policy Object was successfully created and applied to the Workstations OU.
-
-This demonstrates the integration of:
-
-* Active Directory Domain Services (AD DS)
-* Organizational Units (OU)
-* Group Policy Management
-* Centralized workstation administration
-
-The implementation provides a foundation for applying additional enterprise security policies such as password policies, software deployment, security restrictions, and workstation hardening.
+gpresult /h report.html

@@ -54,7 +54,7 @@ The objectives of this project are:
 
 # Lab Architecture
 
-```text
+```
                          +--------------------------------+
                          |      Windows Server 2025       |
                          |            SRV-DC01            |
@@ -73,7 +73,7 @@ The objectives of this project are:
                          +---------------+---------------+
                          |                               |
               +--------------------+          +--------------------+
-              | client01           |          | Client02           |
+              | Client01           |          | Client02           |
               | Windows 11         |          | Windows 11         |
               | Domain Client      |          | Domain Client      |
               +--------------------+          +--------------------+

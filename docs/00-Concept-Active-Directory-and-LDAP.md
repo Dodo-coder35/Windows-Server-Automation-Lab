@@ -1,5 +1,3 @@
-# Active Directory and LDAP - Windows Server 2025
-
 # 1. Introduction
 
 Active Directory Domain Services (AD DS) is Microsoft's centralized directory service used to manage users, computers, groups, and network resources within an enterprise environment.
@@ -37,11 +35,8 @@ The Active Directory infrastructure is composed of several logical components.
 
 A domain is the main administrative boundary of Active Directory.
 
-In this project, the configured domain is:
+In this project, the configured domain is: lab.local
 
-```
-lab.local
-```
 
 The domain stores all directory objects.
 
@@ -60,11 +55,8 @@ Its responsibilities include:
 - LDAP directory services
 - DNS integration
 
-The Domain Controller configured in this lab is:
+The Domain Controller configured in this lab is: SRV-DC01 ( Our server)
 
-```
-SRV-DC01
-```
 
 ---
 
@@ -74,14 +66,13 @@ Organizational Units are containers used to organize Active Directory objects.
 
 Examples from this project include:
 
-```
 Employees
 Departments
 Servers
 Workstations
 Security Group
 Service Accounts
-```
+
 
 OUs simplify administration and allow Group Policy Objects (GPOs) to be applied to specific parts of the directory.
 
@@ -93,13 +84,11 @@ Security Groups are used to organize users according to their roles and simplify
 
 Examples include:
 
-```
 IT-Admins
 HR-Users
 Finance-Users
 Management
-Helpdesk
-```
+
 
 Permissions can then be assigned to groups instead of individual users.
 
@@ -107,11 +96,8 @@ Permissions can then be assigned to groups instead of individual users.
 
 # 4. What is LDAP?
 
-LDAP stands for:
+LDAP stands for: Lightweight Directory Access Protocol
 
-```
-Lightweight Directory Access Protocol
-```
 
 LDAP is an open protocol used to access and manage directory services.
 
@@ -125,7 +111,7 @@ Whenever a client searches for users, groups, computers, or other directory obje
 
 The communication process is illustrated below.
 
-```
+
 User / Computer
        │
        │ LDAP Request
@@ -141,7 +127,7 @@ User / Computer
 User Information
 Group Membership
 Computer Objects
-```
+
 
 LDAP enables clients to search and retrieve information stored inside Active Directory.
 
@@ -174,12 +160,12 @@ The following administrative tasks performed during this project rely on LDAP:
 
 PowerShell cmdlets such as:
 
-```powershell
+   powershell
 Get-ADUser
 Get-ADGroup
 Get-ADComputer
 Get-ADOrganizationalUnit
-```
+
 
 retrieve information from Active Directory through LDAP services.
 

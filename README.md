@@ -159,11 +159,10 @@ Automation scripts are stored in: scripts/
 
 Current scripts:
 
-```
 scripts/
 │
 └── 01-create-organizational-units.ps1
-```
+
 
 
 

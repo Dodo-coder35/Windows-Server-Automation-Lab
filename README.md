@@ -73,7 +73,7 @@ The objectives of this project are:
                          +---------------+---------------+
                          |                               |
               +--------------------+          +--------------------+
-              | Physical PC 01     |          | Physical PC 02     |
+              | client01           |          | Client02           |
               | Windows 11         |          | Windows 11         |
               | Domain Client      |          | Domain Client      |
               +--------------------+          +--------------------+
@@ -87,15 +87,11 @@ The objectives of this project are:
 
 # Active Directory Structure
 
-The Active Directory domain implemented in this laboratory is:
+The Active Directory domain implemented in this laboratory is: lab.local
 
-```
-lab.local
-```
 
 Current Organizational Unit structure:
 
-```
 lab.local
 │
 ├── Employees
@@ -104,7 +100,7 @@ lab.local
 ├── Workstations
 ├── Security Groups
 └── Service Accounts
-```
+
 
 The first Organizational Units were created manually to understand Active Directory administration.
 
@@ -124,11 +120,8 @@ The remaining structure was automated using PowerShell scripts.
 
 - Installation of Active Directory Domain Services
 - Domain Controller promotion
-- Domain creation:
+- Domain creation: lab.local
 
-```
-lab.local
-```
 
 ## DNS
 
@@ -146,30 +139,23 @@ lab.local
 Manual and automated OU creation:
 
 Manual:
-
-```
 Employees
 Departments
-```
+
 
 Automated with PowerShell:
-
-```
 Servers
 Workstations
 Security Groups
 Service Accounts
-```
+
 
 ---
 
 # PowerShell Automation
 
-Automation scripts are stored in:
+Automation scripts are stored in: scripts/
 
-```
-scripts/
-```
 
 Current scripts:
 
@@ -179,43 +165,39 @@ scripts/
 └── 01-create-organizational-units.ps1
 ```
 
-## Organizational Unit Automation
 
-The script:
 
-- Checks if an OU already exists
-- Creates missing Organizational Units
-- Prevents duplicate objects
-- Enables accidental deletion protection
-
-Example:
-
-```powershell
-New-ADOrganizationalUnit
-```
-
-Future automation scripts will include:
-
-- Security group creation
-- User creation from CSV files
-- Group membership management
-- Active Directory reporting
 
 ---
 
 # Project Structure
 
-```
+
 Windows-Server-Automation-Lab
 │
 ├── docs
-│   ├── 01-lab-setup.md
+│   ├── 00-Active-Directory.md
+    ├── 01-lab-setup.md
     ├── O2-Network-Configuration.md
 │   ├── O3-Active-Directory-Installation.md
 │   ├── 04-Domain-Controller.md
 │   ├── 05-DHCP.md
-│   └── 06-Organizational-Units.md
-│
+│   ├──06-Organizational-Units.md
+|   ├── 07-Security-Groups.md
+|   ├──08-Departments-OU-Automation.md
+|   ├──09-autmated-users-creation.md
+|   ├──10-domain-client01.md 
+|   ├──11-Control-Panel-restriction.md  
+│   └──12-password-strategy.md 
+|
+|
+|
+|
+|
+|
+|
+|
+|
 ├── screenshots
 │   ├── 01_Server
 │   ├── 02_Client_Windows
@@ -224,28 +206,41 @@ Windows-Server-Automation-Lab
 │   ├── 05_Domain_Controller
 │   ├── 06_DHCP
 │   ├── 07_Organizational_Units
-│   └── 08_PowerShell_Automation
+|   ├── 08_PowerShell_Automation
+|   ├── 09_Security_Groups
+|   ├── 10_Create_departments
+|   ├── 11_create_users
+|   ├── 12_domain_client01
+|   ├── 13_Control_Panel_restriction
+│   └── 14_Password_strategy
 │
+|
+|
+|
+|
+|
+|
+|
+|
+|
 ├── scripts
-│   └── 01-create-organizational-units.ps1
-│
+│   ├──01-create-organizational-units.ps1
+|   ├──02-create-security-groups.ps1
+│   ├──03-create-departments-ou.ps1
+|   └──04-create-users-from-csv 
+|
+|
+|──CSV
+|   └──users.csv
+|
+|
+|
 └── README.md
-```
 
----
 
-# Future Improvements
 
-Planned improvements:
 
-- Create Active Directory security groups automatically
-- Create users from CSV files
-- Automate user-to-group assignment
-- Configure Group Policy Objects (GPO)
-- Implement Active Directory auditing
-- Generate administration reports using PowerShell
 
----
 
 # Conclusion
 
